@@ -1,0 +1,19 @@
+ScoreSystemLogin Roy, Mark, Shayan, Yordi
+
+Admin systeem
+login systeem
+registratie systeem
+
+-Optioneel:
+2 fa
+
+Mark - login
+1. Vooronderzoek login
+2. Validatie schema (Welke datatypen, welke eisen?)
+3. flowchart. (Via miro)
+
+Shayan:
+Frontend
+
+Roy & Yordi:
+Registration & admin systeem. (Backend)
