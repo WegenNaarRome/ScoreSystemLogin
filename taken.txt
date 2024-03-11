@@ -17,3 +17,10 @@ Frontend
 
 Roy & Yordi:
 Registration & admin systeem. (Backend)
+
+Admin
+- Kan andere admins toevoegen / verwijderen / aanpassen
+- Scores Verwijderen / Aanpassen / Toevoegen
+- Spellen Verwijderen / Aanpassen / Toevoegen
+- Spelers Verwijderen / Aanpassen / Toevoegen / Blokkeren
+
