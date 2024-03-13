@@ -19,7 +19,7 @@ Roy & Yordi:
 Registration & admin systeem. (Backend)
 
 Admin
-- Scores Verwijderen / Aanpassen / Toevoegen
-- Spellen Verwijderen / Aanpassen / Toevoegen
+- Scores Verwijderen / Aanpassen
+- Spellen Verwijderen / Toevoegen
 - Spelers Verwijderen / Aanpassen / Toevoegen / Blokkeren
 
