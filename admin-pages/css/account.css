@@ -16,3 +16,7 @@ section .content .admin{
     border: 1px solid red;
     width: calc(100vw / 6);
 }
+
+.Blocked{
+    display: none;
+}

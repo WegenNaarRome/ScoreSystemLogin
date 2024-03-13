@@ -4,10 +4,10 @@
 
     $admins = array();
     $users = array();
-    $sql = "SELECT Id, Voornaam, Tussenvoegsel, Achternaam, Email, Opleiding, Rol, Aangemaakt FROM users";
+    $sql = "SELECT Id, Voornaam, Tussenvoegsel, Achternaam, Email, Opleiding, Rol, Geblokkeerd, Aangemaakt FROM users";
     $query = mysqli_prepare($connection, $sql);
     mysqli_stmt_execute($query);
-    mysqli_stmt_bind_result($query, $Id, $FirstName, $Infix, $LastName, $Email, $Education, $Role, $CreationDate);
+    mysqli_stmt_bind_result($query, $Id, $FirstName, $Infix, $LastName, $Email, $Education, $Role, $Blocked, $CreationDate);
     while (mysqli_stmt_fetch($query)) {
         $row = array(
             'Id' => $Id,
@@ -16,6 +16,7 @@
             'LastName' => $LastName,
             'Email' => $Email,
             'Education' => $Education,
+            'Blocked' => $Blocked,
             'CreationDate' => $CreationDate
         );
         if ($Role == "Beheerder"){
@@ -65,6 +66,7 @@
                     echo "<p class='LastName'>{$admin['LastName']}</p>"; 
                     echo "<p class='Email'>{$admin['Email']}</p>"; 
                     echo "<p class='Education'>{$admin['Education']}</p>"; 
+                    echo "<p class='Blocked'>{$admin['Blocked']}</p>";
                     echo "<p class='CreationDate'>{$admin['CreationDate']}</p>"; 
                     echo "<span class=\"material-symbols-outlined edit\">
                     edit</span>";
@@ -131,6 +133,7 @@ function hideUpdateUserForm(){
 function showUpdateUserForm(event){
     hideDeleteUsersPrompt();
     hideGrantAdminOptions();
+    hideBlockUsersPrompt();
     if(!document.getElementById("updateUserForm")){
         let edit = event.target;
         let form = document.createElement("form");
@@ -201,12 +204,15 @@ function selectUser(event){
         grantAdmin.addEventListener("click", showGrantAdminOptions);
         let deleteUsers = document.getElementById("deleteUsers");
         deleteUsers.addEventListener("click", showDeleteUsersPrompt);
+        let blockUsers = document.getElementById("blockUsers")
+        blockUsers.addEventListener("click", (showBlockUsersPrompt));
     }
     else{
         if (users_selected.length == 0){
             document.getElementById("adminOperations").remove();
             hideGrantAdminOptions();
             hideDeleteUsersPrompt();
+            hideBlockUsersPrompt();
         }
         else{
             let users = document.querySelectorAll(".users");
@@ -219,6 +225,8 @@ function selectUser(event){
             grantAdmin.addEventListener("click", showGrantAdminOptions);
             let deleteUsers = document.getElementById("deleteUsers");
             deleteUsers.addEventListener("click", showDeleteUsersPrompt);
+            let blockUsers = document.getElementById("blockUsers")
+            blockUsers.addEventListener("click", (showBlockUsersPrompt));
         }
     }
 }
@@ -232,6 +240,7 @@ function hideGrantAdminOptions(){
 function showGrantAdminOptions(){
     hideDeleteUsersPrompt();
     hideUpdateUserForm();
+    hideBlockUsersPrompt();
     if(!document.getElementById("grantAdminForm")){
         let form = document.createElement("form");
         form.setAttribute("action", "../operations/admins/grantAdmin.php");
@@ -286,6 +295,7 @@ function showGrantAdminOptions(){
 function showDeleteUsersPrompt(){
     hideGrantAdminOptions();
     hideUpdateUserForm();
+    hideBlockUsersPrompt();
     if(!document.getElementById("deleteUsersForm")){
         let form = document.createElement("form");
         form.setAttribute("action", "../operations/admins/deleteUsers.php");
@@ -321,6 +331,69 @@ function showDeleteUsersPrompt(){
     }
 }
 
+function showBlockUsersPrompt(){
+    hideGrantAdminOptions();
+    hideUpdateUserForm();
+    hideDeleteUsersPrompt();
+    if(!document.getElementById("blockUsersForm")){
+        let form = document.createElement("form");
+        form.setAttribute("action", "../operations/admins/blockUsers.php");
+        form.setAttribute("method", "POST");
+        form.setAttribute("id", "blockUsersForm");
+
+        let input = document.createElement("input");
+        input.setAttribute("type", "hidden");
+        input.setAttribute("name", "users");
+        input.setAttribute("class", "users");
+        input.value = JSON.stringify(users_selected);
+        
+        form.appendChild(input);
+
+        let label = document.createElement("label");
+        label.setAttribute("for", "Status");
+
+        form.appendChild(label);
+
+        let select = document.createElement("select");
+        select.setAttribute("name", "Status");
+        select.setAttribute("id", "Status");
+
+        let suggestions = ["Blokkeren", "Deblokkeren"];
+        for (let suggestion of suggestions){
+            let option = document.createElement("option");
+            option.setAttribute("value", suggestion);
+            option.textContent = suggestion;
+            select.appendChild(option);
+        }
+
+        form.appendChild(select);
+
+        let div = document.createElement("div");
+        let button = document.createElement("button");
+        button.textContent = "Annuleren";
+        button.addEventListener("click", () =>{
+            form.remove();
+        });
+
+        input = document.createElement("input");
+        input.setAttribute("type", "submit");
+        div.appendChild(button);
+        div.appendChild(input);
+
+        form.appendChild(div);
+        document.body.appendChild(form);
+    }
+}
+
+
+
+
+function hideBlockUsersPrompt(){
+    if (document.getElementById("blockUsersForm")){
+        document.getElementById("blockUsersForm").remove();
+    }
+}
+
 function hideDeleteUsersPrompt(){
     if (document.getElementById("deleteUsersForm")){
         document.getElementById("deleteUsersForm").remove();
@@ -342,6 +415,13 @@ function showMenu(){
     span.setAttribute("class", "material-symbols-outlined");
     span.setAttribute("id", "deleteUsers");
     span.textContent = "delete";
+
+    div.appendChild(span);
+
+    span = document.createElement("span");
+    span.setAttribute("class", "material-symbols-outlined");
+    span.setAttribute("id", "blockUsers");
+    span.textContent = "block";
 
     div.appendChild(span);
 
