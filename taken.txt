@@ -19,7 +19,6 @@ Roy & Yordi:
 Registration & admin systeem. (Backend)
 
 Admin
-- Kan spelers blacklisten
 - Scores Verwijderen / Aanpassen / Toevoegen
 - Spellen Verwijderen / Aanpassen / Toevoegen
 - Spelers Verwijderen / Aanpassen / Toevoegen / Blokkeren
