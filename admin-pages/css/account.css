@@ -6,7 +6,7 @@
     box-sizing: border-box;
 }
 
-#headers{
+.headers{
     display: flex;
     justify-content: space-between;
 }
@@ -17,9 +17,10 @@ section .content{
 
 section .content .admin{
     display: flex;
+    max-width: 100%;
 }
 
-#headers h3, section .content .admin p{
+.headers h3, section .content .admin p{
     border: 1px solid red;
     width: calc(100vw / 6);
 }

@@ -1,0 +1,13 @@
+<?php
+    session_start();
+    include("../../includes/connection.php");
+    $users = json_decode($_POST['users'], true);
+    
+    foreach($users as $user){
+        $query = mysqli_prepare($connection, "DELETE FROM users WHERE Id = ?");
+        mysqli_stmt_bind_param($query, 's', $user);
+        mysqli_stmt_execute($query);
+        mysqli_stmt_close($query);
+    }
+    header("Location: {$_SESSION['last_page']}");
+?>
