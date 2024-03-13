@@ -66,7 +66,7 @@
                     echo "<p class='LastName'>{$admin['LastName']}</p>"; 
                     echo "<p class='Email'>{$admin['Email']}</p>"; 
                     echo "<p class='Education'>{$admin['Education']}</p>"; 
-                    echo "<p class='Blocked'>{$admin['Blocked']}</p>";
+                    echo "<p class='Blocked' blocked='{$admin['Blocked']}'>{$admin['Blocked']}</p>";
                     echo "<p class='CreationDate'>{$admin['CreationDate']}</p>"; 
                     echo "<span class=\"material-symbols-outlined edit\">
                     edit</span>";
@@ -95,6 +95,7 @@
                     echo "<p class='LastName'>{$user['LastName']}</p>"; 
                     echo "<p class='Email'>{$user['Email']}</p>"; 
                     echo "<p class='Education'>{$user['Education']}</p>"; 
+                    echo "<p class='Blocked'>{$user['Blocked']}</p>";
                     echo "<p class='CreationDate'>{$user['CreationDate']}</p>"; 
                     echo "<span class=\"material-symbols-outlined edit\">
                     edit</span>";

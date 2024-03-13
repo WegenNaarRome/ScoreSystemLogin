@@ -20,3 +20,7 @@ section .content .admin{
 .Blocked{
     display: none;
 }
+
+.admin:has([blocked='1']){
+    background-color: var(--secondary);
+}
