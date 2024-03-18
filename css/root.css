@@ -1,0 +1,52 @@
+*{
+    margin: 0;
+    padding: 0;
+    left: 0;
+    top: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: Larken;
+    src: url(../font/LarkenDEMO-Regular.otf);
+}
+
+:root{
+    --primary: rgb(47, 68, 67);
+    --secondary: #bccec266;
+    --highlight: #ffcd00; /* For active links or hovers */
+    --accent: #95cdea; /* To make sections or elements stand out */
+    --contentMaxWidth: 1280px; /* The max width a container is allowed to stretch out over the page (Excluding background-colors) */
+    --textColorLightBgH: #3c3c3c;
+    --textColorLightBg: rgb(60, 60, 60); 
+    --textColorDarkBg: white;
+    --fontSizeGeneral: 16px;
+    --fontSizeH1: 54px;
+    --fontSizeH2: 32px;
+    --fontSizeH3: 26px; 
+    --fontSizeMobileH1: 38px;
+    --fontSizeMobileH2: 28px;
+    --fontSizeMobileH3: 24px;
+    --gap: 24px; /* Spacing between elements. Gap can be used on a parent element that is using display:flex; */
+    --fontGeneral: "Work Sans", sans-serif;
+    --fontH: Larken, serif,  "Work Sans", sans-serif;
+    /* breakpointMobile: < 1100px */
+}
+
+h1, h2, h3{
+    font-family: var(--fontH);
+    color: var(--textColorLightBgH);
+    font-weight: unset;
+}
+
+h1{
+    font-size: var(--fontSizeH1);
+}
+
+p, a{
+    font-family: var(--fontGeneral);
+    font-size: var(--fontSizeGeneral);
+}
+span{
+    cursor: pointer;
+}

@@ -17,3 +17,11 @@ Frontend
 
 Roy & Yordi:
 Registration & admin systeem. (Backend)
+
+Admin
+- Scores Verwijderen / Aanpassen
+- Spellen Verwijderen / Toevoegen
+
+Mac-address:
+Wireless LAN adapter wifi
+

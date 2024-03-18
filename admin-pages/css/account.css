@@ -1,0 +1,29 @@
+.headers{
+    display: flex;
+    justify-content: space-between;
+}
+section .content{
+    display: flex;
+    flex-direction: column;
+}
+
+section .content .admin{
+    display: flex;
+    max-width: 100%;
+}
+
+.headers h3, section .content .admin p{
+    width: calc(100vw / 4);
+}
+
+.Blocked{
+    display: none;
+}
+
+.admin:has([blocked='1']){
+    background-color: var(--secondary);
+}
+
+.FirstName, .Infix, .LastName{
+    display: none;
+}
