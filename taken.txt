@@ -21,5 +21,7 @@ Registration & admin systeem. (Backend)
 Admin
 - Scores Verwijderen / Aanpassen
 - Spellen Verwijderen / Toevoegen
-- Spelers Verwijderen / Aanpassen / Toevoegen / Blokkeren
+
+Mac-address:
+Wireless LAN adapter wifi
 

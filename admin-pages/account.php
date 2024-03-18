@@ -1,6 +1,5 @@
 <?php
     include("../includes/connection.php");
-    include("../includes/breadcrumbs.php");
 
     $admins = array();
     $users = array();
@@ -43,24 +42,32 @@
 </head>
 <body>
     <header>
+        <nav>
+            <?php
+            require_once("../includes/breadcrumbs.php");
+            ?>
+        </nav>
         <h1>Accounts beheren</h1>
     </header>
     <main>
         <section>
             <h2>Beheerders</h2>
-            <div class="headers">
-                <h3>Voornaam</h3>
-                <h3>Tussenvoegsel</h3>
-                <h3>Achternaam</h3>
-                <h3>Email</h3>
-                <h3>Opleiding</h3>
-                <h3>Aangemaakt</h3>
-            </div>
+            <?php
+                if (count($admins) > 0){
+                    echo "<div class=\"headers\">";
+                    echo "<h3>Naam</h3>";
+                    echo "<h3>Email</h3>";
+                    echo "<h3>Opleiding</h3>";
+                    echo "<h3>Aangemaakt</h3>";
+                    echo "</div>";
+                }
+            ?>
             <div class="content">
             <?php
                 foreach($admins as $admin){
                     echo "<div class='admin'>";
                     echo "<input type='checkbox' id='{$admin['Id']}'>";
+                    echo "<p class='Name'>{$admin['FirstName']} {$admin['Infix']} {$admin['LastName']}</p>"; 
                     echo "<p class='FirstName'>{$admin['FirstName']}</p>"; 
                     echo "<p class='Infix'>{$admin['Infix']}</p>"; 
                     echo "<p class='LastName'>{$admin['LastName']}</p>"; 
@@ -72,34 +79,43 @@
                     edit</span>";
                     echo "</div>";
                 }
+                if (count($admins) == 0){
+                    echo "<p>Nog geen beheerders</p>";
+                }
             ?>
             </div>
         </section>
         <section>
             <h2>Gebruikers</h2>
-            <div class="headers">
-                <h3>Voornaam</h3>
-                <h3>Tussenvoegsel</h3>
-                <h3>Achternaam</h3>
-                <h3>Email</h3>
-                <h3>Opleiding</h3>
-                <h3>Aangemaakt</h3>
-            </div>
+            <?php
+                if (count($users) > 0){
+                    echo "<div class=\"headers\">";
+                    echo "<h3>Naam</h3>";
+                    echo "<h3>Email</h3>";
+                    echo "<h3>Opleiding</h3>";
+                    echo "<h3>Aangemaakt</h3>";
+                    echo "</div>";
+                }
+            ?>
             <div class="content">
             <?php
                 foreach($users as $user){
                     echo "<div class='admin'>";
                     echo "<input type='checkbox' id='{$user['Id']}'>";
+                    echo "<p class='Name'>{$user['FirstName']} {$user['Infix']} {$user['LastName']}</p>"; 
                     echo "<p class='FirstName'>{$user['FirstName']}</p>"; 
                     echo "<p class='Infix'>{$user['Infix']}</p>"; 
                     echo "<p class='LastName'>{$user['LastName']}</p>"; 
                     echo "<p class='Email'>{$user['Email']}</p>"; 
                     echo "<p class='Education'>{$user['Education']}</p>"; 
-                    echo "<p class='Blocked'>{$user['Blocked']}</p>";
+                    echo "<p class='Blocked' blocked='{$user['Blocked']}'>{$user['Blocked']}</p>";
                     echo "<p class='CreationDate'>{$user['CreationDate']}</p>"; 
                     echo "<span class=\"material-symbols-outlined edit\">
                     edit</span>";
                     echo "</div>";
+                }
+                if (count($users) == 0){
+                    echo "<p>Nog geen gebruikers</p>";
                 }
             ?>
             </div>
@@ -135,6 +151,7 @@ function showUpdateUserForm(event){
     hideDeleteUsersPrompt();
     hideGrantAdminOptions();
     hideBlockUsersPrompt();
+    hideMenu();
     if(!document.getElementById("updateUserForm")){
         let edit = event.target;
         let form = document.createElement("form");
@@ -200,13 +217,15 @@ function selectUser(event){
     console.log(users_selected);
 
     if (!document.getElementById("adminOperations")){
-        showMenu();
-        let grantAdmin = document.getElementById("grantAdmin");
-        grantAdmin.addEventListener("click", showGrantAdminOptions);
-        let deleteUsers = document.getElementById("deleteUsers");
-        deleteUsers.addEventListener("click", showDeleteUsersPrompt);
-        let blockUsers = document.getElementById("blockUsers")
-        blockUsers.addEventListener("click", (showBlockUsersPrompt));
+        if(users_selected.length > 0){
+            showMenu();
+            let grantAdmin = document.getElementById("grantAdmin");
+            grantAdmin.addEventListener("click", showGrantAdminOptions);
+            let deleteUsers = document.getElementById("deleteUsers");
+            deleteUsers.addEventListener("click", showDeleteUsersPrompt);
+            let blockUsers = document.getElementById("blockUsers")
+            blockUsers.addEventListener("click", (showBlockUsersPrompt));
+        }
     }
     else{
         if (users_selected.length == 0){
@@ -386,9 +405,6 @@ function showBlockUsersPrompt(){
     }
 }
 
-
-
-
 function hideBlockUsersPrompt(){
     if (document.getElementById("blockUsersForm")){
         document.getElementById("blockUsersForm").remove();
@@ -401,7 +417,14 @@ function hideDeleteUsersPrompt(){
     }
 }
 
+function hideMenu(){
+    if (document.getElementById("adminOperations")){
+        document.getElementById("adminOperations").remove();
+    }
+}
+
 function showMenu(){
+    hideUpdateUserForm();
     let div = document.createElement("div");
     div.setAttribute("id", "adminOperations");
 

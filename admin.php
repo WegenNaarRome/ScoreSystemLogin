@@ -1,6 +1,3 @@
-<?php
-    include("includes/breadcrumbs.php");
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +12,7 @@
 </head>
 <body>
     <header>
-        <h1>Over het mbo</h1>
+        <h1>Beheren</h1>
     </header>
     <main>
         <a href="admin-pages/spellen.php">Spellen beheren</a>

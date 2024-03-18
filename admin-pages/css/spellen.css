@@ -8,16 +8,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid red;
 }
 
 .game .TitleContainer{
     display: flex;
     align-items: center;
-    border: 1px solid red;
 }
+
 .game .Description{
     flex-direction: column;
     align-items: center;
-    border: 1px solid red;
 }

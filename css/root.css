@@ -47,3 +47,6 @@ p, a{
     font-family: var(--fontGeneral);
     font-size: var(--fontSizeGeneral);
 }
+span{
+    cursor: pointer;
+}

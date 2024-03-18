@@ -1,5 +1,4 @@
 <?php
-    session_start();
     include("../../includes/connection.php");
 
     $user = $_POST["user"];
@@ -14,5 +13,5 @@
     mysqli_stmt_execute($query);
     mysqli_stmt_close($query);
 
-    header("Location: {$_SESSION['last_page']}");
+    header("Location: ../../admin-pages/account.php");
 ?>

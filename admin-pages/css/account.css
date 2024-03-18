@@ -13,8 +13,7 @@ section .content .admin{
 }
 
 .headers h3, section .content .admin p{
-    border: 1px solid red;
-    width: calc(100vw / 6);
+    width: calc(100vw / 4);
 }
 
 .Blocked{
@@ -23,4 +22,8 @@ section .content .admin{
 
 .admin:has([blocked='1']){
     background-color: var(--secondary);
+}
+
+.FirstName, .Infix, .LastName{
+    display: none;
 }

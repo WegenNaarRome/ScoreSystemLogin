@@ -1,5 +1,4 @@
 <?php
-    session_start();
     include("../../includes/connection.php");
 
     $game = $_POST["game"];
@@ -12,5 +11,5 @@
     mysqli_stmt_execute($query);
     mysqli_stmt_close($query);
 
-    header("Location: {$_SESSION['last_page']}");
+    header("Location: ../../admin-pages/spellen.php");
 ?>
